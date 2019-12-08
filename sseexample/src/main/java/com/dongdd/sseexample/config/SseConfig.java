@@ -11,6 +11,7 @@ import reactor.core.publisher.FluxSink;
 @Configuration
 public class SseConfig {
 
+    // autocanel 설정: true - subscribe가 하나도 없으면 processor 종료, false - subscribe가 없더라 processor 유지
     @Bean
     public EmitterProcessor<SseModel> emitterProcessor() {
         return EmitterProcessor.create(false);
@@ -21,6 +22,7 @@ public class SseConfig {
         return DirectProcessor.create();
     }
 
+    // OverFlow가 생길 경우, 과거의 데이터를 버리고 최신 데이터만 유지
     @Bean
     @Qualifier("eFluxSink")
     public FluxSink<SseModel> emitterProcessorFluxSink(EmitterProcessor<SseModel> emitterProcessor) {
