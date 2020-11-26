@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: kafka_exam
+
+server:
+  port: 8080
+
+kafka:
+  host: localhost:9092
+  topic: test
+  groupId: testGroupId
